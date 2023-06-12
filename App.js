@@ -56,10 +56,13 @@ const App = () => {
         />
         <Stack.Screen
           name="Chat"
-          component={Chat}
-          //Title of header
-          options={({ route }) => ({ title: route.params.name })}
-        />
+        >
+          {props => <Chat
+            isConnected={connectionStatus.isConnected}
+            db={db}
+            {...props}
+          />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
