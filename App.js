@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
-import { Alert } from "react-native";
+import { Alert,LogBox } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNetInfo } from "@react-native-community/netinfo";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
-  getFirestore,
-  disableNetwork,
-  enableNetwork,
-} from "firebase/firestore";
+import {getFirestore,disableNetwork,enableNetwork} from "firebase/firestore";
 //import "react-native-gesture-handler";
 import { initializeApp } from "firebase/app";
 import Start from "./components/Start";

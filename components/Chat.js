@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { StyleSheet, View } from 'react-native';
 import { KeyboardAvoidingView, Platform} from 'react-native';
-import { Bubble, GiftedChat } from "react-native-gifted-chat";
+import { Bubble, GiftedChat, InputToolbar } from "react-native-gifted-chat";
 import { collection, addDoc, onSnapshot, query, orderBy } from "firebase/firestore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const Chat = ({ db, route, navigation, isConnected }) => {
   const { name, userID, color } = route.params;
   const [messages, setMessages] = useState([]);
 
+ //customize chat bubble
  const renderBubble = (props) => {
   return <Bubble
     {...props}
@@ -17,6 +20,12 @@ const Chat = ({ db, route, navigation, isConnected }) => {
     }}
   />
 }
+
+  // Only render text iput toolbar when online
+  const renderInputToolbar = (props) => {
+    if (isConnected) return <InputToolbar {...props} />;
+    else return null;
+  };
 
   let unsubMessages;
 
@@ -47,7 +56,22 @@ const Chat = ({ db, route, navigation, isConnected }) => {
     }
   }, [isConnected]);
 
+  // Save messages to offline storage
+  const cacheMessages = async (messagesToCache) => {
+    try {
+      await AsyncStorage.setItem("chat", JSON.stringify(messagesToCache));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
+  // Get messages from offline storage
+  const loadCachedMessages = async () => {
+    const cachedChat = await AsyncStorage.getItem("chat");
+    cachedChat ? setMessages(JSON.parse(cachedChat)) : setMessages([]);
+  };
+
+  // Append new message to firestore
   const onSend = (newMessages) => {
     addDoc(collection(db, "messages"), newMessages[0])
   }
