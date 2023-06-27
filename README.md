@@ -25,6 +25,14 @@
 - Utilizes React Navigation to switch between two views, Start screen and a Chat screen.
 - Data gets stored online and offline .
 
+# Development environment:
+
+-   npm install expo-cli -g to install the Expo CLI.
+-   expo login.
+-   npm install.
+-   install the Expo Go App on your mobile device.
+-   create your test environment with Android Emulator or iOS Simulator.
+-   start project with npm expo start or expo start in the terminal.
 
 # Dependencies:
 
