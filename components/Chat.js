@@ -81,6 +81,7 @@ const Chat = ({ db, route, navigation, isConnected }) => {
    <GiftedChat
      messages={messages}
      renderBubble={renderBubble}
+     renderInputToolbar={renderInputToolbar}
      onSend={messages => onSend(messages)}
      user={{
        _id: userID,
@@ -88,7 +89,7 @@ const Chat = ({ db, route, navigation, isConnected }) => {
      }}
    />
    {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
-   {Platform.OS === "ios"?<KeyboardAvoidingView behavior="padding" />: null}
+   {Platform.OS === "ios"?<KeyboardAvoidingView behavior="height" />: null}
    </View> 
   )
 
