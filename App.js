@@ -9,6 +9,8 @@ import {getFirestore,disableNetwork,enableNetwork} from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import Start from "./components/Start";
 import Chat from "./components/Chat";
+import * as ImagePicker from 'expo-image-picker';
+import { getStorage } from "firebase/storage";
 
 // Create navigation stack
 const Stack = createNativeStackNavigator();
@@ -27,9 +29,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
+
 
 const App = () => {
   const connectionStatus = useNetInfo();
+
 
   useEffect(() => {
     if (connectionStatus.isConnected === false) {
@@ -56,6 +61,7 @@ const App = () => {
           {props => <Chat
             isConnected={connectionStatus.isConnected}
             db={db}
+            storage={storage}
             {...props}
           />}
         </Stack.Screen>
