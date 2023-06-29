@@ -55,5 +55,7 @@
     "react-native-maps": "1.3.2",
     "expo-av": "~13.2.1"
 
- 
- 
+ ![image0](https://github.com/Polja137/hello-world/assets/117524191/7aa98806-f76b-4455-8137-1de32daee015)
+
+ ![image1](https://github.com/Polja137/hello-world/assets/117524191/a40ea595-2271-4594-843e-86962a69f754)
+
